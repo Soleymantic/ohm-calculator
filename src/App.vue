@@ -9,9 +9,7 @@
         <router-link class="nav-item nav-link active" to="/">Calculator <span class="sr-only">(current)</span></router-link>
         <router-link class="nav-item nav-link active" to="/quiz">Quiz</router-link>
         <router-link class="nav-item nav-link active" to="/files">Files</router-link>
-        <router-link class="nav-item nav-link active" to="/editQuiz">Edit Quiz</router-link>
-        <router-link class="nav-item nav-link active" to="/editFiles">Edit Files</router-link>
-      </div>
+        </div>
     </div>
   </nav>
   <div id="nav">

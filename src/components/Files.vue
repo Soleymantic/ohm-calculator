@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     download(id){
-      return "https://ohmcalc-admin.herokuapp.com//rest/documents/download/" + id;
+      return "https://ohmcalc-admin.herokuapp.com/rest/documents/download/" + id;
     }
   }
 }
