@@ -60,28 +60,28 @@ export default {
   },
   methods: {
     voltagePowerChange(){
-        if(this.voltagePower == 'Nano') this.voltage = this.voltage / 1000000000;
-        if(this.voltagePower == 'Mikro') this.voltage = this.voltage / 1000000;
-        if(this.voltagePower == 'Milli') this.voltage = this.voltage / 1000;
-        if(this.voltagePower == 'Kilo') this.voltage = this.voltage * 1000;
-        if(this.voltagePower == 'Mega') this.voltage = this.voltage * 1000000;
-        if(this.voltagePower == 'Giga') this.voltage = this.voltage * 1000000000;
+        if(this.voltagePower == 'Nano') this.voltage = this.voltage * 1000000000;
+        if(this.voltagePower == 'Mikro') this.voltage = this.voltage * 1000000;
+        if(this.voltagePower == 'Milli') this.voltage = this.voltage * 1000;
+        if(this.voltagePower == 'Kilo') this.voltage = this.voltage / 1000;
+        if(this.voltagePower == 'Mega') this.voltage = this.voltage / 1000000;
+        if(this.voltagePower == 'Giga') this.voltage = this.voltage / 1000000000;
     },
     resistancePowerChange(){
-        if(this.resistancePower == 'Nano') this.resistance = this.resistance / 1000000000;
-        if(this.resistancePower == 'Mikro') this.resistance = this.resistance / 1000000;
-        if(this.resistancePower == 'Milli') this.resistance = this.resistance / 1000;
-        if(this.resistancePower == 'Kilo') this.resistance = this.resistance * 1000;
-        if(this.resistancePower == 'Mega') this.resistance = this.resistance * 1000000;
-        if(this.resistancePower == 'Giga') this.resistance = this.resistance * 1000000000;
+        if(this.resistancePower == 'Nano') this.resistance = this.resistance * 1000000000;
+        if(this.resistancePower == 'Mikro') this.resistance = this.resistance * 1000000;
+        if(this.resistancePower == 'Milli') this.resistance = this.resistance * 1000;
+        if(this.resistancePower == 'Kilo') this.resistance = this.resistance / 1000;
+        if(this.resistancePower == 'Mega') this.resistance = this.resistance / 1000000;
+        if(this.resistancePower == 'Giga') this.resistance = this.resistance / 1000000000;
     },
     amperePowerChange(){
-        if(this.amperePower == 'Nano') this.current = this.current / 1000000000;
-        if(this.amperePower == 'Mikro') this.current = this.current / 1000000;
-        if(this.amperePower == 'Milli') this.current = this.current / 1000;
-        if(this.amperePower == 'Kilo') this.current = this.current * 1000;
-        if(this.amperePower == 'Mega') this.current = this.current * 1000000;
-        if(this.amperePower == 'Giga') this.current = this.current * 1000000000;
+        if(this.amperePower == 'Nano') this.current = this.current * 1000000000;
+        if(this.amperePower == 'Mikro') this.current = this.current * 1000000;
+        if(this.amperePower == 'Milli') this.current = this.current * 1000;
+        if(this.amperePower == 'Kilo') this.current = this.current / 1000;
+        if(this.amperePower == 'Mega') this.current = this.current / 1000000;
+        if(this.amperePower == 'Giga') this.current = this.current / 1000000000;
     },
     calculate(){
         if(this.voltage == 0 && this.resistance > 0 && this.current > 0){
