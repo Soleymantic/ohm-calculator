@@ -1,0 +1,234 @@
+<template>
+  <div class="triangle-up">
+      <input v-model="voltage" placeholder="z.B 3.4 Volt" class="voltage-input"/>
+      <select @change="voltagePowerChange()" class="voltage-dropdown" v-model="voltagePower">
+        <option disabled value="">Please select one</option>
+        <option>Nano</option>
+        <option>Mikro</option>
+        <option>Milli</option>
+        <option>Kilo</option>
+        <option>Mega</option>
+        <option>Giga</option>
+      </select>
+      <input v-model="resistance" placeholder="z.B. 230 Ohm" class="resistance-input"/>
+      <select @change="resistancePowerChange()" class="resistance-dropdown" v-model="resistancePower">
+        <option disabled value="">Please select one</option>
+        <option>Nano</option>
+        <option>Mikro</option>
+        <option>Milli</option>
+        <option>Kilo</option>
+        <option>Mega</option>
+        <option>Giga</option>
+      </select>
+      <input v-model="current" placeholder="z.B. 0.87 A" class="current-input"/>
+      <select @change="amperePowerChange()" class="ampere-dropdown" v-model="amperePower">
+        <option disabled value="">Please select one</option>
+        <option>Nano</option>
+        <option>Mikro</option>
+        <option>Milli</option>
+        <option>Kilo</option>
+        <option>Mega</option>
+        <option>Giga</option>
+      </select>
+      <button @click="calculate" class="calcButton" type="button">Berechnen</button>
+      <button @click="reset" class="resetButton" type="button">Reset</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'OhmCalculator',
+  props: {
+    msg: String
+  },
+  data() {
+      return {
+        voltage: 0.0,
+        resistance: 0.0,
+        current: 0.0,
+        power: 0.0,
+        voltagePower: "",
+        resistancePower: "",
+        amperePower: "",
+        amperePowers: ['Nano','Mikro','Milli','Kilo','Mega','Giga'],
+        resistancePowers: ['Nano','Mikro','Milli','Kilo','Mega','Giga'],
+        voltagePowers: ['Nano','Mikro','Milli','Kilo','Mega','Giga']
+      }
+  },
+  computed: {
+
+  },
+  methods: {
+    voltagePowerChange(){
+        if(this.voltagePower == 'Nano') this.voltage = this.voltage / 1000000000;
+        if(this.voltagePower == 'Mikro') this.voltage = this.voltage / 1000000;
+        if(this.voltagePower == 'Milli') this.voltage = this.voltage / 1000;
+        if(this.voltagePower == 'Kilo') this.voltage = this.voltage * 1000;
+        if(this.voltagePower == 'Mega') this.voltage = this.voltage * 1000000;
+        if(this.voltagePower == 'Giga') this.voltage = this.voltage * 1000000000;
+    },
+    resistancePowerChange(){
+        if(this.resistancePower == 'Nano') this.resistance = this.resistance / 1000000000;
+        if(this.resistancePower == 'Mikro') this.resistance = this.resistance / 1000000;
+        if(this.resistancePower == 'Milli') this.resistance = this.resistance / 1000;
+        if(this.resistancePower == 'Kilo') this.resistance = this.resistance * 1000;
+        if(this.resistancePower == 'Mega') this.resistance = this.resistance * 1000000;
+        if(this.resistancePower == 'Giga') this.resistance = this.resistance * 1000000000;
+    },
+    amperePowerChange(){
+        if(this.amperePower == 'Nano') this.current = this.current / 1000000000;
+        if(this.amperePower == 'Mikro') this.current = this.current / 1000000;
+        if(this.amperePower == 'Milli') this.current = this.current / 1000;
+        if(this.amperePower == 'Kilo') this.current = this.current * 1000;
+        if(this.amperePower == 'Mega') this.current = this.current * 1000000;
+        if(this.amperePower == 'Giga') this.current = this.current * 1000000000;
+    },
+    calculate(){
+        if(this.voltage == 0 && this.resistance > 0 && this.current > 0){
+            this.voltage = this.resistance * this.current;
+        } else if(this.resistance == 0 && this.voltage > 0 && this.current > 0){
+            this.resistance = this.voltage / this.current;
+        }else if(this.current == 0 && this.resistance > 0 && this.voltage > 0){
+            this.current = this.voltage / this.resistance;
+        }
+    },
+    reset(){
+        this.voltage = 0;
+        this.resistance = 0;
+        this.current = 0;
+        this.voltagePower = "";
+        this.amperePower = "";
+        this.resistancePower = "";
+    }
+  },
+  watch: {
+
+  }
+}
+</script>
+<style scoped>
+select.voltage-dropdown {
+  left: -165px;
+  height: 30px;
+  width: 160px;
+  top: -40px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  outline: none;
+  position: absolute;
+}
+
+
+.current-input{
+    position: absolute;
+    top: 380px;
+    left: 280px;
+    height: 30px;
+    width: 180px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+}
+
+.voltage-input{
+  position: absolute;
+  top: -40px;
+  left: 5px;
+  height: 30px;
+  width: 100px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  outline: none;
+}
+
+.resistance-input{
+    position: absolute;
+    top: 380px;
+    right: 120px;
+    height: 30px;
+    width: 180px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+}
+
+select.resistance-dropdown {
+  position: absolute;
+  top: 380px;
+  right: 320px;
+  height: 30px;
+  width: 155px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  outline: none;
+}
+
+select.ampere-dropdown {
+    position: absolute;
+    top: 380px;
+    left: 115px;
+    height: 30px;
+    width: 155px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+}
+
+.header{
+    height: 80px;
+    text-align: center;
+    font-family: cursive;
+    font-size: 3rem;
+    color: cornflowerblue;
+    background-color: aliceblue;
+    border: 1px solid;
+}
+
+.triangle-up {
+	width: 0;
+	height: 0;
+	border-left: 200px solid transparent;
+	border-right: 200px solid transparent;
+	border-bottom: 340px solid #555;
+    position: relative;
+    top: 100px;
+    margin: auto;
+}
+
+input {
+    padding-left: 10px;
+}
+
+.calcButton{
+    position: absolute;
+    top: 200px;
+    height: 50px;
+    width: 100px;
+    left: -45px;
+    outline: none;
+    background-color: lightgreen;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 30px;
+}
+
+.resetButton{
+    position: absolute;
+    top: 150px;
+    height: 50px;
+    width: 100px;
+    left: -45px;
+    outline: none;
+    background-color: salmon;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 30px;
+}
+
+</style>
