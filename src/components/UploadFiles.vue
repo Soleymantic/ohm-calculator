@@ -78,7 +78,7 @@ export default {
         }
     },
     download(id){
-        return "http://localhost:8080/rest/documents/download/" + id;
+        return "https://ohmcalc-admin.herokuapp.com/rest/documents/download/" + id;
     },
     deleteFile(id){
       UploadService.delete(id).then(() => {
