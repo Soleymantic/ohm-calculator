@@ -12,7 +12,7 @@
                role="progressbar"
                :aria-valuenow="progressInfo.percentage"
                aria-valuemin="0"
-               aria-valuemax="100"
+               aria-valuemax="1000"
                :style="{ width: progressInfo.percentage + '%' }"
           >
             {{progressInfo.percentage}}%
@@ -33,14 +33,14 @@
     </button>
 
     <div class="card">
-      <div class="card-header">List of Files</div>
+      <div class="card-header">Liste an Dokumenten</div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item"
             v-for="(file, index) in fileInfos"
             :key="index"
         >
           <a :href="download(file.id)">{{ file.name }}</a>
-          <button @click="deleteFile(file.id)" class="btn btn-danger">Delete</button>
+          <button @click="deleteFile(file.id)" class="btn btn-danger">L&ouml;schen</button>
         </li>
       </ul>
     </div>

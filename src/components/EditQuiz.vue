@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <input v-model="question" class="form-control form-control-lg" type="text" placeholder="Question">
+      <input v-model="question" class="form-control form-control-lg" type="text" placeholder="Frage">
     </div>
   </div>
   <div class="mt-3"></div>
@@ -10,14 +10,14 @@
       <div class="col-sm">
         <div class="card">
           <div @click="correctAnswer1" :class="[ answer1.correct ? 'card-body lg-card':'card-body']">
-            <input v-model="answer1.answer" class="form-control form-control-lg" type="text" placeholder="Answer #1">
+            <input v-model="answer1.answer" class="form-control form-control-lg" type="text" placeholder="Antwort #1">
           </div>
         </div>
       </div>
       <div class="col-sm">
         <div class="card">
           <div @click="correctAnswer2" :class="[ answer2.correct ? 'card-body lg-card':'card-body']">
-            <input v-model="answer2.answer" class="form-control form-control-lg" type="text" placeholder="Answer #2">
+            <input v-model="answer2.answer" class="form-control form-control-lg" type="text" placeholder="Antwort #2">
           </div>
         </div>
       </div>
@@ -28,14 +28,14 @@
       <div class="col-sm">
         <div class="card">
           <div @click="correctAnswer3" :class="[ answer3.correct ? 'card-body lg-card':'card-body']">
-            <input v-model="answer3.answer" class="form-control form-control-lg" type="text" placeholder="Answer #3">
+            <input v-model="answer3.answer" class="form-control form-control-lg" type="text" placeholder="Antwort #3">
           </div>
         </div>
       </div>
       <div class="col-sm">
         <div class="card">
           <div @click="correctAnswer4" :class="[ answer4.correct ? 'card-body lg-card':'card-body']">
-            <input v-model="answer4.answer" class="form-control form-control-lg" type="text" placeholder="Answer #4">
+            <input v-model="answer4.answer" class="form-control form-control-lg" type="text" placeholder="Antwort #4">
           </div>
         </div>
       </div>
@@ -48,20 +48,20 @@
         {{ message }}
       </div>
       <div class="col-sm">
-        <button :disabled="!valid" @click="addQuiz" type="button" class="btn btn-success btn-lg btn-block">Add Quiz</button>
+        <button :disabled="!valid" @click="addQuiz" type="button" class="btn btn-success btn-lg btn-block">Quiz hinzuf&uuml;gen</button>
       </div>
     </div>
   </div>
   <div class="mt-5"></div>
   <div class="card">
-    <div class="card-header">List of Quiz</div>
+    <div class="card-header">Quizliste</div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item"
           v-for="(quiz, index) in quizList"
           :key="index"
       >
         <a>{{ quiz.question.question }}</a>
-        <button @click="deleteQuiz(quiz.question.id)" class="btn btn-danger">Delete</button>
+        <button @click="deleteQuiz(quiz.question.id)" class="btn btn-danger">L&ouml;schen</button>
       </li>
     </ul>
   </div>

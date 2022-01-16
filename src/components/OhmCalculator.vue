@@ -1,8 +1,9 @@
 <template>
-  <div class="triangle-up">
+  <div class="ohmcalc">
+    <div class="triangle-up">
       <input v-model="voltage" placeholder="z.B 3.4 Volt" class="voltage-input"/>
       <select @change="voltagePowerChange()" class="voltage-dropdown" v-model="voltagePower">
-        <option disabled value="">Please select one</option>
+        <option disabled value="">Bitte w&auml;hle Einheit</option>
         <option>Nano</option>
         <option>Mikro</option>
         <option>Milli</option>
@@ -12,7 +13,7 @@
       </select>
       <input v-model="resistance" placeholder="z.B. 230 Ohm" class="resistance-input"/>
       <select @change="resistancePowerChange()" class="resistance-dropdown" v-model="resistancePower">
-        <option disabled value="">Please select one</option>
+        <option disabled value="">Bitte w&auml;hle Einheit</option>
         <option>Nano</option>
         <option>Mikro</option>
         <option>Milli</option>
@@ -22,7 +23,7 @@
       </select>
       <input v-model="current" placeholder="z.B. 0.87 A" class="current-input"/>
       <select @change="amperePowerChange()" class="ampere-dropdown" v-model="amperePower">
-        <option disabled value="">Please select one</option>
+        <option disabled value="">Bitte w&auml;hle Einheit</option>
         <option>Nano</option>
         <option>Mikro</option>
         <option>Milli</option>
@@ -32,7 +33,11 @@
       </select>
       <button @click="calculate" class="calcButton" type="button">Berechnen</button>
       <button @click="reset" class="resetButton" type="button">Reset</button>
+    </div>
+    <label class="powerLabel" for="powerInput">Leistung: </label>
+    <input id="powerInput" class="power" v-model="power"/>
   </div>
+
 </template>
 
 <script>
@@ -91,6 +96,8 @@ export default {
         }else if(this.current == 0 && this.resistance > 0 && this.voltage > 0){
             this.current = this.voltage / this.resistance;
         }
+
+        this.power = this.voltage * this.current;
     },
     reset(){
         this.voltage = 0;
@@ -99,6 +106,7 @@ export default {
         this.voltagePower = "";
         this.amperePower = "";
         this.resistancePower = "";
+        this.power = 0;
     }
   },
   watch: {
@@ -132,6 +140,18 @@ select.voltage-dropdown {
     outline: none;
 }
 
+.powerLabel{
+  position: absolute;
+  top: 600px;
+  left: 330px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ohmcalc{
+  position: relative;
+}
+
 .voltage-input{
   position: absolute;
   top: -40px;
@@ -154,6 +174,16 @@ select.voltage-dropdown {
     border-right: none;
     border-top: none;
     outline: none;
+}
+
+.power{
+  position: absolute;
+  top: 600px;
+  left: 420px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  outline: none;
 }
 
 select.resistance-dropdown {

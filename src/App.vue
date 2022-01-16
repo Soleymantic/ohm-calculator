@@ -1,27 +1,56 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-darkgrey">
+  <nav class="navbar navbar-expand-lg navbar-light custom-green">
     <a class="navbar-brand" href="#">Ohm-Calculator</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <router-link class="nav-item nav-link active" to="/">Calculator <span class="sr-only">(current)</span></router-link>
-        <router-link class="nav-item nav-link active" to="/quiz">Quiz</router-link>
-        <router-link class="nav-item nav-link active" to="/files">Files</router-link>
+        <router-link @click="changeNav('calc')" :class="[ activeCalc ? 'nav-item nav-link active' : 'nav-item nav-link']" to="/">Calculator <span class="sr-only">(current)</span></router-link>
+        <router-link @click="changeNav('quiz')" :class="[ activeQuiz ? 'nav-item nav-link active' : 'nav-item nav-link']" to="/quiz">Quiz</router-link>
+        <router-link @click="changeNav('files')" :class="[ activeFiles ? 'nav-item nav-link active' : 'nav-item nav-link']" to="/files">Files</router-link>
         </div>
     </div>
   </nav>
-  <div id="nav">
-    <router-link to="/">Ohm Calculator</router-link> |
-    <router-link to="/quiz">Quiz</router-link> |
-    <router-link to="/files">Files</router-link>
-  </div>
   <div class="router-view">
     <router-view/>
   </div>
 
 </template>
+
+<script>
+export default {
+  name: "App",
+  data(){
+    return {
+      activeCalc: true,
+      activeQuiz: false,
+      activeFiles: false
+    };
+  },
+  methods:{
+    changeNav(nav){
+      if(nav == 'calc'){
+        this.activeCalc = true;
+        this.activeFiles = false;
+        this.activeQuiz = false;
+      }
+
+      if(nav == 'quiz'){
+        this.activeCalc = false;
+        this.activeFiles = false;
+        this.activeQuiz = true;
+      }
+
+      if(nav == 'files'){
+        this.activeCalc = false;
+        this.activeFiles = true;
+        this.activeQuiz = false;
+      }
+    }
+  }
+}
+</script>
 
 <style>
 #app {
@@ -52,7 +81,7 @@
 ;
 }
 
-.bg-darkgrey{
-  background-color: darkgray;
+.custom-green{
+  background-color: lightgreen;
 }
 </style>

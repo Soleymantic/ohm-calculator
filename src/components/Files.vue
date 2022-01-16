@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header">List of Files</div>
+    <div class="card-header">Liste an Dokumenten</div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item"
           v-for="(file, index) in fileInfos"
