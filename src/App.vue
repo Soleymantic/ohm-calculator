@@ -83,5 +83,6 @@ export default {
 
 .custom-green{
   background-color: lightgreen;
+  border-bottom: 2px solid darkgray;
 }
 </style>

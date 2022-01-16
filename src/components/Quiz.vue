@@ -48,7 +48,7 @@
         <div class="col-sm">
         </div>
         <div class="col-sm">
-          <button @click="nextQuestion" type="button" class="btn btn-success btn-lg btn-block">Next</button>
+          <button @click="nextQuestion" type="button" class="btn btn-success btn-lg btn-block">N&auml;chste Frage</button>
         </div>
       </div>
     </div>
