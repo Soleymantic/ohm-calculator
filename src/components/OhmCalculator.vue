@@ -1,7 +1,7 @@
 <template>
   <div class="ohmcalc">
     <div class="triangle-up">
-      <input v-model="voltage" placeholder="z.B 3.4 Volt" class="voltage-input"/>
+      <input v-model="voltage" placeholder="Spannung" class="voltage-input"/>
       <select @change="voltagePowerChange()" class="voltage-dropdown" v-model="voltagePower">
         <option disabled value="">Bitte w&auml;hle Einheit</option>
         <option>Nano</option>
@@ -11,7 +11,7 @@
         <option>Mega</option>
         <option>Giga</option>
       </select>
-      <input v-model="resistance" placeholder="z.B. 230 Ohm" class="resistance-input"/>
+      <input v-model="resistance" placeholder="Widerstand" class="resistance-input"/>
       <select @change="resistancePowerChange()" class="resistance-dropdown" v-model="resistancePower">
         <option disabled value="">Bitte w&auml;hle Einheit</option>
         <option>Nano</option>
@@ -21,7 +21,7 @@
         <option>Mega</option>
         <option>Giga</option>
       </select>
-      <input v-model="current" placeholder="z.B. 0.87 A" class="current-input"/>
+      <input v-model="current" placeholder="Strom" class="current-input"/>
       <select @change="amperePowerChange()" class="ampere-dropdown" v-model="amperePower">
         <option disabled value="">Bitte w&auml;hle Einheit</option>
         <option>Nano</option>
@@ -48,9 +48,9 @@ export default {
   },
   data() {
       return {
-        voltage: 0.0,
-        resistance: 0.0,
-        current: 0.0,
+        voltage: undefined,
+        resistance: undefined,
+        current: undefined,
         power: 0.0,
         voltagePower: "",
         resistancePower: "",
@@ -89,20 +89,21 @@ export default {
         if(this.amperePower == 'Giga') this.current = this.current / 1000000000;
     },
     calculate(){
-        if(this.voltage == 0 && this.resistance > 0 && this.current > 0){
+        if((this.voltage == 0 || this.voltage == undefined) && this.resistance > 0 && this.current > 0){
             this.voltage = this.resistance * this.current;
-        } else if(this.resistance == 0 && this.voltage > 0 && this.current > 0){
+        } else if(( this.resistance == 0|| this.resistance == undefined) && this.voltage > 0 && this.current > 0){
             this.resistance = this.voltage / this.current;
-        }else if(this.current == 0 && this.resistance > 0 && this.voltage > 0){
+        }else if((this.current == 0 || this.current == undefined) && this.resistance > 0 && this.voltage > 0){
             this.current = this.voltage / this.resistance;
         }
 
-        this.power = this.voltage * this.current;
+        if(this.voltage != undefined && this.current != undefined)
+          this.power = this.voltage * this.current;
     },
     reset(){
-        this.voltage = 0;
-        this.resistance = 0;
-        this.current = 0;
+        this.voltage = undefined;
+        this.resistance = undefined;
+        this.current = undefined;
         this.voltagePower = "";
         this.amperePower = "";
         this.resistancePower = "";
